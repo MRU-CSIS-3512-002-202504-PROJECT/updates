@@ -4,6 +4,9 @@ Here be various files meant to update your Project. Because things change.
 
 ## Changelog
 
+### 2025-09-22
+- Updated compose.yml to have container names that won't conflict with lab/lec ones.
+
 ### 2025-09-21
 - Added config/php/php.ini
     - Introduced key/value to disables ability to use short php tags (`<? ?>).
