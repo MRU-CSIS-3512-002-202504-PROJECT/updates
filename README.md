@@ -4,6 +4,10 @@ Here be various files meant to update your Project. Because things change.
 
 ## Changelog
 
+### 2025-10-07
+- Coretools now has `redirect()` helper method.
+- Router now does simple authorization.
+
 ### 2025-09-22
 - Updated compose.yml to have container names that won't conflict with lab/lec ones.
 
