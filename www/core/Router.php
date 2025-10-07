@@ -10,10 +10,13 @@ class Router
         $new_route = [
             'method' => $method,
             'resource_path' => $resource_path,
-            'controller' => $controller
+            'controller' => $controller,
+            'restricted' => false // need now for restricted routes
         ];
 
         array_push($this->routes, $new_route);
+
+        return $this;  // for chaining
     }
 
     public function route($target_resource_path, $target_method)
@@ -22,6 +25,9 @@ class Router
         foreach ($this->routes as $current_route) {
 
             if ($this->route_matches($target_resource_path, $target_method, $current_route)) {
+                if ($current_route['restricted']) {
+                    $this->authorize();
+                }
 
                 return require path_to("controllers/{$current_route['controller']}");
             }
@@ -31,6 +37,21 @@ class Router
         http_response_code(404);
         require path_to('views/404.php');
         die();
+    }
+
+    private function authorize()
+    {
+        if (!isset($_SESSION['authorized'])) {
+            redirect('/');
+        }
+    }
+
+
+    public function restrict()
+    {
+        // array_key_last is a built-in PHP thing. Look it up!
+        $last_routes_index = array_key_last($this->routes);
+        $this->routes[$last_routes_index]['restricted'] = true;
     }
 
 
