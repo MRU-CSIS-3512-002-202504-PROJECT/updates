@@ -4,6 +4,10 @@ Here be various files meant to update your Project. Because things change.
 
 ## Changelog
 
+### 2025-11-09
+- Updated `core/Router.php` so that it can handle simple path parameters.
+- Bring in `routes/api.php` and update `public/index.php` to react to api requests.
+
 ### 2025-10-30
 - Added files and instructions for getting ESLint & Prettier into a project workspace.
 
